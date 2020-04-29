@@ -1,17 +1,17 @@
 # think-addons
-The ThinkPHP 5.1 Addons Package
+The ESA Admin ThinkPHP 5.1 Addons Package
 
 ## 安装
 在composer.json的require中添加
 ```
-"coming/think-addons": "dev-master"
+"esa/esa-addons": "dev-master"
 ```
 以及在composer.json中添加
 ```
 "repositories": [{
-        "type": "git",
-        "url": "https://github.com/invisibleGG/think-addons.git"
-    }],
+    "type": "git",
+    "url": "https://github.com/ESA-Admin/esa-addons.git"
+}],
 ```
 之后执行命令来安装
 > composer update
