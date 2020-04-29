@@ -1,10 +1,10 @@
 {
-    "name": "coming/think-addons",
+    "name": "esa/esa-addons",
     "description": "The ThinkPHP5.1.* Addons Package",
     "license": "Apache-2.0",
     "authors": [
         {
-            "name": "pgfsky",
+            "name": "猪在天上飞",
             "email": "root@bug-maker.com"
         }
     ],
