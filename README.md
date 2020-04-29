@@ -1,4 +1,4 @@
-# think-addons
+# esa-addons
 The ESA Admin ThinkPHP 5.1 Addons Package
 
 ## 安装
@@ -63,7 +63,7 @@ return [
 <?php
 namespace addons\test;	// 注意命名空间规范
 
-use think\Addons;
+use esa\Addons;
 
 /**
  * 插件测试
