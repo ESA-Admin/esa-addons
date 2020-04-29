@@ -102,7 +102,7 @@ Hook::add('app_init', function () {
     $config = App::isDebug() ? [] : cache('addons');
     if (empty($config)) {
         // 读取插件目录及钩子列表
-        $base = get_class_methods("\\think\\Addons");
+        $base = get_class_methods("\\ESA\\Addons");
         // 读取插件目录中的php文件
         foreach (glob(Env::get('addons_path') . '*/*.php') as $addons_file) {
             // 格式化路径信息

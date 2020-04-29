@@ -8,7 +8,7 @@
 // +----------------------------------------------------------------------
 // | Author: 猪在天上飞 <root@bug-maker.com>
 // +----------------------------------------------------------------------
-namespace think;
+namespace ESA;
 
 // use think\facade\Env;
 // use think\Controller;
