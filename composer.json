@@ -1,6 +1,6 @@
 {
     "name": "esa/esa-addons",
-    "description": "The ThinkPHP5.1.* Addons Package",
+    "description": "The ESA Admin ThinkPHP5.1.* Addons Package",
     "license": "Apache-2.0",
     "authors": [
         {
@@ -17,7 +17,7 @@
             "think\\": "src/"
         },
         "files": [
-            "src/helper.php"
+            "src/esa-addons.php"
         ]
     }
 }

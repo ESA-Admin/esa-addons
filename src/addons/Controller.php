@@ -8,7 +8,7 @@
 // +----------------------------------------------------------------------
 // | Author: 猪在天上飞 <root@bug-maker.com>
 // +----------------------------------------------------------------------
-namespace ESA\addons;
+namespace think\addons;
 
 // use think\facade\Env;
 // use think\facade\Request;
