@@ -9,7 +9,7 @@
 // | Author: 猪在天上飞 <root@bug-maker.com>
 // +----------------------------------------------------------------------
 
-namespace think\addons;
+namespace ESA\addons;
 
 use think\facade\Config;
 use think\facade\Env;

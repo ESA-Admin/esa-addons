@@ -14,7 +14,7 @@
     },
     "autoload": {
         "psr-4": {
-            "think\\": "src/"
+            "ESA\\": "src/"
         },
         "files": [
             "src/esa-addons.php"
