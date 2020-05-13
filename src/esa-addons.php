@@ -45,8 +45,19 @@ Route::group('addons', function () {
     // 路由地址
     if ($pathinfo[0] == 'addons' && isset($pathinfo[2])) {
         // 获取路由地址
-        $route = explode('.', $pathinfo[1]);
-        $module = array_shift($route);
+        if(is_numeric($pathinfo[1])){
+            $platform_id = $pathinfo[1];
+            define("PLATFORM_ID",$pathinfo[1]);
+            $route = explode('.', $pathinfo[2]);
+            $module = array_shift($route);
+            $action = $pathinfo[3];
+        }else{
+            $platform_id = "";
+            $route = explode('.', $pathinfo[1]);
+            $module = array_shift($route);
+            $action = $pathinfo[2];
+        }
+        
         $className = ucfirst(array_pop($route));
         array_push($route, $className);
         $controller = join('\\', $route);
@@ -62,17 +73,24 @@ Route::group('addons', function () {
         }
         // 请求转入
         // Route::rule(':rule', "\\addons\\{$module}\\controller\\{$controller}@{$pathinfo[2]}")->middleware($middleware);
+        
         $controller2 = strtolower(str_replace("\\",".",$controller));
-        $rule = "{$module}.{$controller2}/:rule";
-        Route::rule($rule, "\\addons\\{$module}\\controller\\{$controller}@{$pathinfo[2]}")->middleware($middleware);
+        $rule = $platform_id."/{$module}.{$controller2}/:rule";
+        Route::rule($rule, "\\addons\\{$module}\\controller\\{$controller}@{$action}")->middleware($middleware);
     }
 })->middleware(function ($request, \Closure $next) {
     // 路由地址
     $pathinfo = explode('/', $request->path());
-    $rules = explode('.', $pathinfo[1]);
-    $request->setModule(array_shift($rules));
-    $request->setController(join('/', $rules));
-    $request->setAction($pathinfo[2]);
+    if(is_numeric($pathinfo[1])){
+        $routes = explode('.', $pathinfo[2]);
+        $action = $pathinfo[3];
+    }else{
+        $routes = explode('.', $pathinfo[1]);
+        $action = $pathinfo[2];
+    }
+    $request->setModule(array_shift($routes));
+    $request->setController(join('/', $routes));
+    $request->setAction($action);
 
     return $next($request);
 });
@@ -110,7 +128,7 @@ Hook::add('app_init', function () {
             // 获取插件目录名
             $name = pathinfo($info['dirname'], PATHINFO_FILENAME);
             // 找到插件入口文件
-            if (strtolower($info['filename']) == 'site') {
+            if (strtolower($info['filename']) == 'Main') {
                 // 读取出所有公共方法
                 $methods = (array)get_class_methods("\\addons\\" . $name . "\\" . $info['filename']);
                 // 跟插件基类方法做比对，得到差异结果
@@ -253,7 +271,7 @@ if (!function_exists('get_addons_class')) {
                 $namespace = "\\addons\\" . $name . "\\controller\\" . $class;
                 break;
             default:
-                $namespace = "\\addons\\" . $name . "\\site";
+                $namespace = "\\addons\\" . $name . "\\Main";
         }
 
         return class_exists($namespace) ? $namespace : '';
@@ -317,7 +335,7 @@ if (!function_exists('get_addons_config')) {
 if (!function_exists('get_addons_info')) {
     function get_addons_info($name)
     {
-        $class = "\\addons\\{$name}\\site";
+        $class = "\\addons\\{$name}\\Main";
         if (!class_exists($class)) {
             return [];
         }
