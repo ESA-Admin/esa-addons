@@ -53,6 +53,7 @@ Route::group('addons', function () {
             $action = $pathinfo[3];
         }else{
             $platform_id = "";
+            define("PLATFORM_ID",0);
             $route = explode('.', $pathinfo[1]);
             $module = array_shift($route);
             $action = $pathinfo[2];
