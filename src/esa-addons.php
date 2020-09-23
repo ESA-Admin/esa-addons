@@ -382,7 +382,7 @@ if (!function_exists('addons_url')) {
                 $param = array_merge($query, $param);
             }
         }
-
-        return url("addons/{$addons}.{$controller}/{$action}", $param, $suffix, $domain);
+        $platform_id = defined("PLATFORM_ID") && !empty(PLATFORM_ID) ? PLATFORM_ID."/" : "";
+        return url("/addons/{$platform_id}{$addons}.{$controller}/{$action}", $param, $suffix, $domain);
     }
 }
