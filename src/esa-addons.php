@@ -58,6 +58,7 @@ Route::group('addons', function () {
             $module = array_shift($route);
             $action = $pathinfo[2];
         }
+        define("ADDON_ID",$module);
         
         $className = ucfirst(array_pop($route));
         array_push($route, $className);
@@ -106,7 +107,10 @@ Loader::addNamespace('addons', $addons_path);
 
 // 闭包自动识别插件目录配置
 Hook::add('app_init', function () {
-    Hook::add("esa_attachment_init",["addons\demo\Hook"]);
+    Hook::import([
+        "esa_attachment_init"=>["addons\demo\Hook","addons\\esa_backstage\\Hook"],
+        "esa_attachment_done"=>["addons\demo\Hook"]
+    ], true);
     // 获取开关
     $autoload = (bool)Config::get('addons.autoload', false);
     // 非正是返回
