@@ -16,7 +16,7 @@ namespace ESA;
  * @author 猪在天上飞 <root@bug-maker.com>
  * @package think\addons
  */
-abstract class AddnsHook
+abstract class AddonsHook
 {
     
 }
