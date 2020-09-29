@@ -106,6 +106,7 @@ Loader::addNamespace('addons', $addons_path);
 
 // 闭包自动识别插件目录配置
 Hook::add('app_init', function () {
+    Hook::add("esa_attachment_init",["addons\demo\Hook"]);
     // 获取开关
     $autoload = (bool)Config::get('addons.autoload', false);
     // 非正是返回
@@ -129,7 +130,7 @@ Hook::add('app_init', function () {
             // 获取插件目录名
             $name = pathinfo($info['dirname'], PATHINFO_FILENAME);
             // 找到插件入口文件
-            if (strtolower($info['filename']) == 'Main') {
+            if (strtolower($info['filename']) == 'main') {
                 // 读取出所有公共方法
                 $methods = (array)get_class_methods("\\addons\\" . $name . "\\" . $info['filename']);
                 // 跟插件基类方法做比对，得到差异结果
