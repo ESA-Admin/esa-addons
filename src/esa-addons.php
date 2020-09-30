@@ -107,10 +107,10 @@ Loader::addNamespace('addons', $addons_path);
 
 // 闭包自动识别插件目录配置
 Hook::add('app_init', function () {
-    Hook::import([
-        "esa_attachment_init"=>["addons\demo\Hook","addons\\esa_backstage\\Hook"],
-        "esa_attachment_done"=>["addons\demo\Hook"]
-    ], true);
+    // Hook::import([
+    //     "esa_attachment_init"=>["addons\demo\Hook","addons\\esa_backstage\\Hook"],
+    //     "esa_attachment_done"=>["addons\demo\Hook"]
+    // ], true);
     // 获取开关
     $autoload = (bool)Config::get('addons.autoload', false);
     // 非正是返回
@@ -183,49 +183,6 @@ Hook::add('app_init', function () {
         Hook::import($data, false);
     }
 });
-// dump(cache('addons'));
-// 闭包初始化行为
-// Hook::add('app_init', function () {
-//     // 获取系统配置
-//     $data = App::isDebug() ? [] : Cache::get('hooks', []);
-    
-//     $config = config('addons.hooks');
-//     $addons = !empty($config) ? $config : [];
-    
-//     foreach ($addons as $key => $value) {
-//         if (is_string($value)) {
-//             $addons[$key] = explode(',', $value);
-//         }
-//     }
-//     dump($addons);
-//     if (empty($data)) {
-//         // 初始化钩子
-//         foreach ($addons as $key => $values) {
-//             if (is_string($values)) {
-//                 $values = explode(',', $values);
-//             } else {
-//                 $values = (array)$values;
-//             }
-//             $addons[$key] = array_filter(array_map('get_addons_class', $values));
-            
-//             if (count($addons[$key]) > 0) {
-//                 array_push($addons[$key],$key);
-//                 Hook::add($key, $addons[$key]);
-//             }
-            
-//             // 注册意义对应的钩子
-//             foreach ($values as $key2 => $value2) {
-//                 if (in_array($key,$addons)) {
-//                     dump([$addons[$key][$key2],$key]);
-//                     Hook::add($key."@".$value2,[$addons[$key][$key2],$key]);
-//                 } 
-//             }
-//         }
-//         cache('hooks', $addons);
-//     } else {
-//         Hook::import($data, false);
-//     }
-// });
 
 /**
  * 处理插件钩子
