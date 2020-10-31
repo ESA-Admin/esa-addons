@@ -25,6 +25,11 @@ if (!defined("ADDONS_PATH")) {
     define("ADDONS_PATH",$addons_path);
 }
 
+$esa_url = request()->url();
+if(preg_match("/PLATFORM_ID\/(\d+)/",$esa_url,$platform)){
+    // exit(dump($platform[1]));
+    define("PLATFORM_ID",$platform[1]);
+}
 // 插件访问路由配置
 Route::group('addons', function () {
     if (!isset($_SERVER['REQUEST_URI'])) {
@@ -47,13 +52,13 @@ Route::group('addons', function () {
         // 获取路由地址
         if(is_numeric($pathinfo[1])){
             $platform_id = $pathinfo[1];
-            define("PLATFORM_ID",$pathinfo[1]);
+            !defined("PLATFORM_ID") ? define("PLATFORM_ID",$pathinfo[1]) : "";
             $route = explode('.', $pathinfo[2]);
             $module = array_shift($route);
             $action = $pathinfo[3];
         }else{
             $platform_id = "";
-            define("PLATFORM_ID",0);
+            !defined("PLATFORM_ID") ? define("PLATFORM_ID",0) : "";
             $route = explode('.', $pathinfo[1]);
             $module = array_shift($route);
             $action = $pathinfo[2];
@@ -316,7 +321,7 @@ if (!function_exists('get_addons_info')) {
  * @return bool|string
  */
 if (!function_exists('addons_url')) {
-    function addons_url($url = '', $param = [], $suffix = true, $domain = false)
+    function addons_url($url = '', $param = [], $suffix = true, $domain = false, $paltform_id = PLATFORM_ID)
     {
         if (empty($url)) {
             // 生成 url 模板变量
@@ -344,7 +349,8 @@ if (!function_exists('addons_url')) {
                 $param = array_merge($query, $param);
             }
         }
-        $platform_id = defined("PLATFORM_ID") && !empty(PLATFORM_ID) ? PLATFORM_ID."/" : "";
+        // $platform_id = defined("PLATFORM_ID") && !empty(PLATFORM_ID) ? PLATFORM_ID."/" : "";
+        $platform_id = !empty($paltform_id) ? $paltform_id."/" : "";
         return url("/addons/{$platform_id}{$addons}.{$controller}/{$action}", $param, $suffix, $domain);
     }
 }
