@@ -10,6 +10,8 @@
 // +----------------------------------------------------------------------
 namespace ESA;
 
+use app\common\library\Auth;
+
 /**
  * 插件基类
  * Class AddnsHook
@@ -18,6 +20,13 @@ namespace ESA;
  */
 abstract class AddonsHook
 {
-    
+    protected $admin = false;
+    protected $auth = null;
+    public function __construct()
+    {
+        $this->admin = session("admin_info");
+        $this->auth = Auth::instance();
+        $this->auth->init($this->auth->getClientToken());
+    }
 }
     
