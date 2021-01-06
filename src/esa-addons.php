@@ -36,7 +36,7 @@ Route::group('addons', function () {
         return 'error addons';
     }
     // 请求位置
-    if (request()->server()['PATH_INFO']) {
+    if (!empty(request()->server()['PATH_INFO'])) {
         $path_info = request()->server()['PATH_INFO'];
         $path = substr(ltrim($path_info),1,strlen($path_info));
     } else {
