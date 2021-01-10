@@ -34,7 +34,6 @@ class Controller extends ESA
         }
         // $this->ADDON_TYPE 检查权限，分为api和ADMIN
         $this->ESA_TYPE = isset($this->ESA_TYPE) ? $this->ESA_TYPE : "INDEX";
-        $this->checkauth($this->ESA_TYPE);
 
         $this->ESA_ADDON = [
             "name"  => $this->getName(),
