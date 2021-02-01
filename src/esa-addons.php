@@ -26,7 +26,7 @@ if (!defined("ADDONS_PATH")) {
 }
 
 $esa_url = request()->url();
-if(preg_match("/PLATFORM_ID\/(\d+)/",$esa_url,$platform)){
+if(preg_match("/PLATFORM_ID\/(\d+)/",$esa_url,$platform) || preg_match("/PLATFORM_ID=(\d+)/",$esa_url,$platform)){
     // exit(dump($platform[1]));
     define("PLATFORM_ID",$platform[1]);
 }
