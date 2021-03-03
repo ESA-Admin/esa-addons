@@ -8,7 +8,7 @@
             "email": "root@bug-maker.com"
         }
     ],
-    "minimum-stability": "master",
+    "minimum-stability": "dev",
     "require": {
         "topthink/framework": "5.1.*"
     },
