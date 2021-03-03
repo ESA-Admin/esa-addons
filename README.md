@@ -6,6 +6,7 @@ The ESA Admin ThinkPHP 5.1 Addons Package
 ```
 "esa/esa-addons": "dev-master"
 ```
+## 在线git
 以及在composer.json中添加
 ```
 "repositories": [{
