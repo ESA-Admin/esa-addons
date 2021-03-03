@@ -1,5 +1,5 @@
 {
-    "name": "esa-admin/esa-addons",
+    "name": "esa/esa-addons",
     "description": "The ESA Admin ThinkPHP5.1.* Addons Package",
     "license": "Apache-2.0",
     "authors": [
