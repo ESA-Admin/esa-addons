@@ -1,5 +1,5 @@
 {
-    "name": "esa/esa-addons",
+    "name": "esa-admin/esa-addons",
     "description": "The ESA Admin ThinkPHP5.1.* Addons Package",
     "license": "Apache-2.0",
     "authors": [
@@ -8,7 +8,7 @@
             "email": "root@bug-maker.com"
         }
     ],
-    "minimum-stability": "dev",
+    "minimum-stability": "master",
     "require": {
         "topthink/framework": "5.1.*"
     },
