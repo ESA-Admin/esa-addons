@@ -26,7 +26,7 @@ if (!defined("ADDONS_PATH")) {
 }
 
 $esa_url = request()->url();
-if(preg_match("/PLATFORM_ID\/(\d+)/",$esa_url,$platform) || preg_match("/PLATFORM_ID=(\d+)/",$esa_url,$platform)){
+if((preg_match("/PLATFORM_ID\/(\d+)/",$esa_url,$platform) || preg_match("/PLATFORM_ID=(\d+)/",$esa_url,$platform)) && !defined("PLATFORM_ID")){
     // exit(dump($platform[1]));
     define("PLATFORM_ID",$platform[1]);
 }
@@ -321,8 +321,9 @@ if (!function_exists('get_addons_info')) {
  * @return bool|string
  */
 if (!function_exists('addons_url')) {
-    function addons_url($url = '', $param = [], $suffix = true, $domain = false, $paltform_id = PLATFORM_ID)
+    function addons_url($url = '', $param = [], $suffix = true, $domain = false, $platform_id = null)
     {
+        $platform_id = $platform_id === null && defined('PLATFORM_ID') ? PLATFORM_ID : $platform_id;
         if (empty($url)) {
             // 生成 url 模板变量
             $addons = request()->module();
@@ -350,7 +351,7 @@ if (!function_exists('addons_url')) {
             }
         }
         // $platform_id = defined("PLATFORM_ID") && !empty(PLATFORM_ID) ? PLATFORM_ID."/" : "";
-        $platform_id = !empty($paltform_id) ? $paltform_id."/" : "";
+        $platform_id = !empty($platform_id) ? $platform_id."/" : "";
         return url("/addons/{$platform_id}{$addons}.{$controller}/{$action}", $param, $suffix, $domain);
     }
 }
