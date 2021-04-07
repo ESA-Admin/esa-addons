@@ -112,6 +112,7 @@ Loader::addNamespace('addons', $addons_path);
 
 // 闭包自动识别插件目录配置
 Hook::add('app_init', function () {
+    
     // Hook::import([
     //     "esa_attachment_init"=>["addons\demo\Hook","addons\\esa_backstage\\Hook"],
     //     "esa_attachment_done"=>["addons\demo\Hook"]
