@@ -34,11 +34,7 @@ class Controller extends ESA
         }
         // $this->ADDON_TYPE 检查权限，分为api和ADMIN
         $this->ESA_TYPE = isset($this->ESA_TYPE) ? $this->ESA_TYPE : "INDEX";
-
-        $this->ESA_ADDON = [
-            "name"  => $this->getName(),
-            "path"  => ADDONS_PATH . $this->getName() . DIRECTORY_SEPARATOR
-        ];
+        // $this->ESA_ADDON = model("common/Addons")->where("identification",$this->getName())->find();
         $this->ESA_CONFIG['addon'] = $this->ESA_ADDON;
 
         // 获取当前插件目录
