@@ -30,6 +30,9 @@ if((preg_match("/PLATFORM_ID\/(\d+)/",$esa_url,$platform) || preg_match("/PLATFO
     // exit(dump($platform[1]));
     define("PLATFORM_ID",$platform[1]);
 }
+if((preg_match("/ADDON\/(\w+)/",$esa_url,$addon) || preg_match("/ADDON=(\w+)/",$esa_url,$addon)) && !defined("ADDON_ID")){
+    define("ADDON_ID",$addon[1]);
+}
 // 插件访问路由配置
 Route::group('addons', function () {
     if (!isset($_SERVER['REQUEST_URI'])) {
