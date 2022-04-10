@@ -86,6 +86,8 @@ Route::group('addons', function () {
         
         $controller2 = strtolower(str_replace("\\",".",$controller));
         $rule = $platform_id."/{$module}.{$controller2}/:rule";
+        // 转换_为大写字母
+        $controller = lcfirst(str_replace(" ","",ucwords(str_replace("_"," ",$controller))));
         Route::rule($rule, "\\addons\\{$module}\\controller\\{$controller}@{$action}")->middleware($middleware);
     }
 })->middleware(function ($request, \Closure $next) {

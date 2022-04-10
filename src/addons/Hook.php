@@ -9,6 +9,7 @@
 // | Author: 猪在天上飞 <root@bug-maker.com>
 // +----------------------------------------------------------------------
 namespace ESA\addons;
+use app\common\controller\ESA;
 
 class Hook extends ESA
 {
