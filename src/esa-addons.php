@@ -103,6 +103,7 @@ Route::group('addons', function () {
     $request->setModule(array_shift($routes));
     $request->setController(join('/', $routes));
     $request->setAction($action);
+    $request->__set("pfid",PLATFORM_ID);
 
     return $next($request);
 });
